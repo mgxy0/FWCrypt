@@ -6,10 +6,11 @@ A simple utility to encrypt and decrypt files using Ruby's OpenSSL library.
 
 ## Features 🛠️
 
-- 📂 **Encryption**: Encrypt your files with AES-256-CBC.
-- 🔑 **Secure Keys**: Generate secure keys based on Fibonacci and Woodall numbers.
-- 🔄 **Easy Decryption**: Decrypt files using the same utility.
-- 🚀 **Compatibility**: Uses only standard Ruby libraries.
+- 📇 **Encrypt/Decrypt**: Encrypt and decrypt your files of any type with AES-256-CBC.
+- 🔑 **Security**: Generate a secure encryption based on Fibonacci and Woodall numbers.
+- ✅ **Compatibility**: Uses only standard Ruby libraries.
+- 💻 **Cross-Platform Compatibility**: Works on macOS, Linux, and Windows.
+- 🔧 **Simple Installation**: Quickly set up and run the tool with minimal dependencies.
 
 ## Installation 📦
 
