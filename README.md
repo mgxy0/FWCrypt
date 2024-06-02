@@ -46,10 +46,15 @@ FWCrypt is a simple utility to encrypt and decrypt files using Ruby's OpenSSL li
 
 ## Requirements 🗃️
 
+   - Ruby
+   - base64 lib
+   - openssl lib
+
 ### MacOS  :
 
 ```sh
-brew install ruby 
+brew install ruby
+brew install openssl
 gem install base64
 ```
 
@@ -58,6 +63,7 @@ gem install base64
 ```sh
 sudo apt-get update
 sudo apt-get install ruby-full
+sudo apt-get install libssl-dev
 gem install base64
 ```
 
@@ -67,10 +73,11 @@ gem install base64
 2. Ensure you select the option to add Ruby to the PATH during installation: select "Add Ruby executables to your PATH".
 3. After installation, open a new command prompt window and install the necessary gems:
    ```sh
+   gem install openssl
    gem install base64
    ```
 
-## 📜 License
+## License 📄
 
 GNU GPLv3 🐃
 
