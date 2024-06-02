@@ -3,18 +3,18 @@ require_relative 'utils'
 require 'base64'
 
 def main
-  puts "Vuoi (c)riptare o (d)ecriptare un file?"
-  scelta = gets.strip.downcase
+  puts "Do you want to (e)ncrypt or (d)ecrypt a file?"
+  choice = gets.strip.downcase
 
-  case scelta
-  when 'c'
+  case choice
+  when 'e'
     key = generate_key
     iv = generate_iv
 
-    puts "Inserisci il percorso del file da crittografare:"
+    puts "Enter the path of the file to encrypt:"
     input_path = gets.strip
 
-    puts "Inserisci la directory in cui salvare il file crittografato:"
+    puts "Enter the directory to save the encrypted file:"
     output_dir = gets.strip
 
     data = read_file(input_path)
@@ -28,14 +28,14 @@ def main
     output_path_enc = File.join(output_dir, "#{original_filename}.fwc")
     write_file(output_path_enc, Base64.strict_encode64(iv + encrypted_data))
 
-    puts "File crittografato salvato in #{output_path_enc}"
+    puts "Encrypted file saved at #{output_path_enc}"
 
   when 'd'
-    puts "Inserisci il percorso del file crittografato (.fwc):"
+    puts "Enter the path of the encrypted file (.fwc):"
     input_path_enc = gets.strip
 
     unless input_path_enc.end_with?('.fwc')
-      puts "Errore: Il file da decrittare deve avere estensione .fwc"
+      puts "Error: The file to decrypt must have a .fwc extension"
       return
     end
 
@@ -55,10 +55,10 @@ def main
 
     write_file(output_path_dec, file_data)
 
-    puts "File decrittografato salvato in #{output_path_dec}"
+    puts "Decrypted file saved at #{output_path_dec}"
 
   else
-    puts "Scelta non valida. Per favore inserisci 'c' per crittare o 'd' per decrittare."
+    puts "Invalid choice. Please enter 'e' to encrypt or 'd' to decrypt."
   end
 end
 
