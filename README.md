@@ -1,5 +1,6 @@
+# 🔒 FWCrypt - Ruby Encryption Tool 🔓
 
-# 🔒 Ruby Encryption Tool 🔓
+
 
 A simple utility to encrypt and decrypt files using Ruby's OpenSSL library.
 
