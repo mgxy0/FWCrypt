@@ -7,7 +7,7 @@ FWCrypt is a simple utility to encrypt and decrypt files using Ruby's OpenSSL li
 ## Features 🛠️
 
 - 📇 **Encrypt/Decrypt**: Encrypt and decrypt your files of any type with AES-256-CBC.
-- 🔑 **Security**: The cryptographic key is derived by combining Fibonacci and Woodall numbers with the user's password. This complex key material is further processed with PBKDF2 to generate a secure key. PBKDF2 Iterations: Using 20,000 iterations in PBKDF2 significantly increases the time needed to perform brute force attacks, improving key security.
+- 🔑 **Security**: The cryptographic key is derived by combining Fibonacci and Woodall numbers with the user's password. This complex key material is further processed with PBKDF2 to generate a secure key. PBKDF2 using 20,000 iterations, significantly increases the time needed to perform brute force attacks, improving key security.
 - ✅ **Compatibility**: Uses only standard Ruby libraries.
 - 💻 **Cross-Platform Compatibility**: Works on macOS, Linux, and Windows.
 - 🔧 **Simple Installation**: Quickly set up and run the tool with minimal dependencies.
