@@ -8,14 +8,29 @@ def main
 
   case choice
   when 'e'
-    key = generate_key
+    salt = generate_iv
+    key = generate_key(salt)
     iv = generate_iv
 
     puts "Enter the path of the file to encrypt:"
     input_path = gets.strip
+    input_path = File.expand_path(input_path)
+
+    if !File.exist?(input_path)
+      puts "Error: The file to encrypt does not exist"
+      puts "Checked path: #{input_path}" # Debug message
+      return
+    end
 
     puts "Enter the directory to save the encrypted file:"
     output_dir = gets.strip
+    output_dir = File.expand_path(output_dir)
+
+    if !Dir.exist?(output_dir)
+      puts "Error: The directory to save the encrypted file does not exist"
+      puts "Checked directory: #{output_dir}" # Debug message
+      return
+    end
 
     data = read_file(input_path)
     original_filename = File.basename(input_path)
@@ -26,24 +41,31 @@ def main
     encrypted_data = encrypt(combined_data, key, iv)
 
     output_path_enc = File.join(output_dir, "#{original_filename}.fwc")
-    write_file(output_path_enc, Base64.strict_encode64(iv + encrypted_data))
+    write_file(output_path_enc, Base64.strict_encode64(salt + iv + encrypted_data))
 
     puts "Encrypted file saved at #{output_path_enc}"
 
   when 'd'
     puts "Enter the path of the encrypted file (.fwc):"
     input_path_enc = gets.strip
+    input_path_enc = File.expand_path(input_path_enc)
 
     unless input_path_enc.end_with?('.fwc')
       puts "Error: The file to decrypt must have a .fwc extension"
       return
     end
 
-    key = generate_key
+    if !File.exist?(input_path_enc)
+      puts "Error: The encrypted file does not exist"
+      puts "Checked path: #{input_path_enc}" # Debug message
+      return
+    end
 
     encrypted_data_with_iv = Base64.strict_decode64(read_file(input_path_enc))
-    iv = encrypted_data_with_iv[0...16]
-    encrypted_data = encrypted_data_with_iv[16..-1]
+    salt = encrypted_data_with_iv[0...16]
+    iv = encrypted_data_with_iv[16...32]
+    encrypted_data = encrypted_data_with_iv[32..-1]
+    key = generate_key(salt)
 
     decrypted_data = decrypt(encrypted_data, key, iv)
 
