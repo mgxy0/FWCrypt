@@ -8,7 +8,7 @@ ruby main.rb
 
 ### Encrypt files 🔸
 
-c :
+e :
 1. Enter the path of the file you want to encrypt.
 2. Enter the directory where you want to save the encrypted file.
 3. The program will generate an encryption key using the combination of Fibonacci and Woodall, and encrypt the file using AES-256-CBC.
@@ -35,7 +35,7 @@ ruby main.rb
 
 ```sh
 Do you want to (e)ncrypt or (d)ecrypt to file?
-and
+e
 ```
 
 Enter the directory of the file to encrypt:
