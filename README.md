@@ -51,7 +51,7 @@ gem install base64
    - Choose `c` to encrypt. 
    - Enter the path of the file to encrypt. 
    - Enter a strong password. 
-   - The crypted files is in the same path.
+   - The crypted files is named "CryptedFW-file.fwc" in the same path.
 
 2. **Decrypt a file**:
    ```sh
