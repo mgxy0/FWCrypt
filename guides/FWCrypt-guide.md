@@ -1,7 +1,5 @@
 # A little guide for FWCrypt 
 
-	encrypt and decrypt all type of files
-
 ## Install
 	
 	git clone https://github.com/mgxy0/FWCrypt.git
