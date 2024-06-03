@@ -2,10 +2,23 @@ require 'io/console'
 require_relative 'encryption'
 require_relative 'utils'
 require 'base64'
+require 'thread'
 
 def prompt_password(prompt)
   print prompt
   STDIN.noecho(&:gets).strip
+end
+
+def animate
+  chars = ['|', '/', '-', '\\']
+  i = 0
+  Thread.new do
+    loop do
+      print "\r#{chars[i % chars.length]}"
+      i += 1
+      sleep(0.1)
+    end
+  end
 end
 
 def main
@@ -20,7 +33,7 @@ def main
 
     if !File.exist?(input_path)
       puts "Error: The file to encrypt does not exist"
-      puts "Checked path: #{input_path}" # Debug message
+      puts "Checked path: #{input_path}"
       return
     end
 
@@ -34,6 +47,9 @@ def main
 
     combined_data = metadata + Base64.strict_encode64(data)
 
+    puts "Encrypting..."
+    animation_thread = animate
+
     encrypted_data = encrypt(combined_data, password, iv)
 
     output_dir = File.dirname(input_path)
@@ -41,6 +57,8 @@ def main
     output_path_enc = File.join(output_dir, output_filename)
     write_file(output_path_enc, Base64.strict_encode64(iv + encrypted_data))
 
+    Thread.kill(animation_thread)
+    print "\r"
     puts "Encrypted file saved at #{output_path_enc}"
 
   when 'd'
@@ -55,7 +73,7 @@ def main
 
     if !File.exist?(input_path_enc)
       puts "Error: The encrypted file does not exist"
-      puts "Checked path: #{input_path_enc}" # Debug message
+      puts "Checked path: #{input_path_enc}"
       return
     end
 
@@ -65,6 +83,9 @@ def main
     encrypted_data_with_iv = Base64.strict_decode64(read_file(input_path_enc))
     iv = encrypted_data_with_iv[0...16]
     encrypted_data = encrypted_data_with_iv[16..-1]
+
+    puts "Decrypting..."
+    animation_thread = animate
 
     decrypted_data = decrypt(encrypted_data, password, iv)
 
@@ -76,6 +97,8 @@ def main
 
     write_file(output_path_dec, file_data)
 
+    Thread.kill(animation_thread)
+    print "\r"
     puts "Decrypted file saved at #{output_path_dec}"
 
   else
