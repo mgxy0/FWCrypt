@@ -29,7 +29,7 @@ def generate_key(password, salt)
 end
 
 def generate_iv
-  OpenSSL::Random.random_bytes(16) # 16 bytes for AES-256-CBC IV
+  OpenSSL::Random.random_bytes(16)
 end
 
 def generate_password_hash(password, salt)
