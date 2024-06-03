@@ -1,6 +1,12 @@
+require 'io/console'
 require_relative 'encryption'
 require_relative 'utils'
 require 'base64'
+
+def prompt_password(prompt)
+  print prompt
+  STDIN.noecho(&:gets).strip
+end
 
 def main
   puts "Do you want to (e)ncrypt or (d)ecrypt a file?"
@@ -8,10 +14,6 @@ def main
 
   case choice
   when 'e'
-    salt = generate_iv
-    key = generate_key(salt)
-    iv = generate_iv
-
     puts "Enter the path of the file to encrypt:"
     input_path = gets.strip
     input_path = File.expand_path(input_path)
@@ -22,26 +24,22 @@ def main
       return
     end
 
-    puts "Enter the directory to save the encrypted file:"
-    output_dir = gets.strip
-    output_dir = File.expand_path(output_dir)
+    password = prompt_password("Enter a password for encryption: ")
+    puts
 
-    if !Dir.exist?(output_dir)
-      puts "Error: The directory to save the encrypted file does not exist"
-      puts "Checked directory: #{output_dir}" # Debug message
-      return
-    end
-
+    iv = generate_iv
     data = read_file(input_path)
     original_filename = File.basename(input_path)
     metadata = "#{original_filename}|"
 
     combined_data = metadata + Base64.strict_encode64(data)
 
-    encrypted_data = encrypt(combined_data, key, iv)
+    encrypted_data = encrypt(combined_data, password, iv)
 
-    output_path_enc = File.join(output_dir, "#{original_filename}.fwc")
-    write_file(output_path_enc, Base64.strict_encode64(salt + iv + encrypted_data))
+    output_dir = File.dirname(input_path)
+    output_filename = "CryptedFW-file.fwc"
+    output_path_enc = File.join(output_dir, output_filename)
+    write_file(output_path_enc, Base64.strict_encode64(iv + encrypted_data))
 
     puts "Encrypted file saved at #{output_path_enc}"
 
@@ -61,19 +59,20 @@ def main
       return
     end
 
-    encrypted_data_with_iv = Base64.strict_decode64(read_file(input_path_enc))
-    salt = encrypted_data_with_iv[0...16]
-    iv = encrypted_data_with_iv[16...32]
-    encrypted_data = encrypted_data_with_iv[32..-1]
-    key = generate_key(salt)
+    password = prompt_password("Enter the password for decryption: ")
+    puts
 
-    decrypted_data = decrypt(encrypted_data, key, iv)
+    encrypted_data_with_iv = Base64.strict_decode64(read_file(input_path_enc))
+    iv = encrypted_data_with_iv[0...16]
+    encrypted_data = encrypted_data_with_iv[16..-1]
+
+    decrypted_data = decrypt(encrypted_data, password, iv)
 
     metadata_end_index = decrypted_data.index('|')
-    metadata = decrypted_data[0...metadata_end_index]
+    original_filename = decrypted_data[0...metadata_end_index]
     file_data = Base64.strict_decode64(decrypted_data[(metadata_end_index + 1)..-1])
 
-    output_path_dec = File.join(File.dirname(input_path_enc), metadata)
+    output_path_dec = File.join(File.dirname(input_path_enc), original_filename)
 
     write_file(output_path_dec, file_data)
 
