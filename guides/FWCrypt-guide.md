@@ -1,4 +1,4 @@
-# 🔒A little guide for FWCrypt🔓
+# 🔒 A little guide for FWCrypt 🔓
 
 ## Install 📦
 	
