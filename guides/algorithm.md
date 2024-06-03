@@ -1,8 +1,9 @@
-# Algoritmo per la combinazione di Fibonacci e Woodall
+# Algoritmo per la combinazione di Fibonacci e Woodall 
 
-  ## Generazione delle Sequenze:
-      Genera una sequenza di numeri di Fibonacci fino alla lunghezza desiderata.
-      Genera una sequenza di numeri di Woodall fino alla lunghezza desiderata.
+## Generazione delle Sequenze:
+  
+    Genera una sequenza di numeri di Fibonacci fino alla lunghezza desiderata.
+    Genera una sequenza di numeri di Woodall fino alla lunghezza desiderata.
 
     Combinazione delle Sequenze:
       Combina i numeri di Fibonacci e Woodall utilizzando operazioni aritmetiche e bitwise per ottenere un risultato unico e complesso.
@@ -13,28 +14,38 @@
     Derivazione della Chiave:
       Usa una funzione di derivazione della chiave come PBKDF2 con un sale per rendere più difficile la generazione della chiave.
 
-  ## Dettagli dell'Algoritmo
+## Dettagli dell'Algoritmo
 
-    Generazione delle Sequenze di Fibonacci e Woodall:
-      La sequenza di Fibonacci è definita come F(n)=F(n−1)+F(n−2)F(n)=F(n−1)+F(n−2) con F(0)=0F(0)=0 e F(1)=1F(1)=1.
-      La sequenza di Woodall è definita come W(n)=n×2n−1W(n)=n×2n−1.
-
-    Combinazione delle Sequenze:
-      Per ogni indice ii nella sequenza, calcola:
-      C(i)=(F(i)⊕W(i))%256
-      C(i)=(F(i)⊕W(i))%256
-      Dove ⊕⊕ rappresenta l'operazione XOR bitwise.
+  ### Generazione delle Sequenze di Fibonacci e Woodall:
+        Sequenza di Fibonacci:
+            La sequenza di Fibonacci è una serie di numeri in cui ogni numero è la somma dei due numeri precedenti.
+            La formula per generare i numeri di Fibonacci è:
+                ```sh
+                F(n) = F(n-1) + F(n-2)
+                con F(0) = 0 e F(1) = 1.
+                ```
+        Sequenza di Woodall:
+            La sequenza di Woodall è una serie di numeri calcolati come:
+                ```sh
+                W(n) = n * 2^n - 1
+                ```
+  ### Combinazione delle Sequenze:
+  Per combinare le due sequenze in modo da ottenere una chiave crittografica complessa, esegui i seguenti passaggi per ogni indice ii nelle sequenze:
+            Calcola:
+                C(i) = (F(i) XOR W(i)) % 256
+            Dove XOR rappresenta l'operazione bitwise XOR, che confronta i bit di due numeri e restituisce 1 se i bit sono diversi, altrimenti 0.
 
     Hashing della Chiave:
-      Usa SHA-256 per hashare la sequenza combinata:
-      hashed_key=SHA-256(combined_sequence)
-      hashed_key=SHA-256(combined_sequence)
+        Per garantire che la chiave combinata sia di lunghezza fissa e per aumentarne la sicurezza, utilizziamo l'algoritmo di hashing SHA-256. Questo algoritmo converte la sequenza combinata in una stringa di byte di 32 byte.
+        La formula per hashare la chiave combinata è:
+            hashed_key = SHA-256(combined_sequence)
 
     Derivazione della Chiave con PBKDF2:
-      Usa PBKDF2 con il sale per derivare la chiave finale:
-      final_key=PBKDF2(hashed_key,salt,iterations=20000,key_length=32)
-      final_key=PBKDF2(hashed_key,salt,iterations=20000,key_length=32)
+        Per rendere la chiave derivata ancora più sicura e resistente agli attacchi di forza bruta, utilizziamo PBKDF2 (Password-Based Key Derivation Function 2). Questa funzione utilizza un sale e un numero di iterazioni per generare la chiave finale.
+        La formula per derivare la chiave finale è:
+            final_key = PBKDF2(hashed_key, salt, iterations=20000, key_length=32)
 
+    
   ## Spiegazione dell'algoritmo
 
     Generazione delle Sequenze:
@@ -50,3 +61,5 @@
       Utilizziamo PBKDF2 con un sale per derivare la chiave finale, aumentando ulteriormente la sicurezza contro gli attacchi di forza bruta.
 
 ####Questo algoritmo e la relativa implementazione migliorano significativamente la sicurezza del processo di crittografia utilizzando numeri di Fibonacci e Woodall in combinazione con tecniche di derivazione della chiave avanzate.
+
+
