@@ -14,18 +14,34 @@ FWCrypt is a simple utility to encrypt and decrypt files using Ruby's OpenSSL li
 
 ## Installation 📦
 
-1. Clone the repository:
+### Linux 🐧 :
+```sh
+sudo apt-get update
+sudo apt-get install ruby-full
+sudo apt-get install libssl-dev
+gem install base64
+```
+### MacOS  :
+```sh
+brew install ruby
+brew install openssl
+gem install base64
+```
+### Windows 🪟 :
+1. Download and install Ruby using RubyInstaller from [rubyinstaller.org](https://rubyinstaller.org/).
+2. Ensure you select the option to add Ruby to the PATH during installation: select "Add Ruby executables to your PATH".
+3. After installation, open a new command prompt window and install the necessary gems:
    ```sh
-   git clone https://github.com/your-username/ruby-encryption-tool.git
-   ```
-2. Enter the project directory:
-   ```sh
-   cd ruby-encryption-tool
-   ```
-3. Install the necessary gems:
-   ```sh
+   gem install openssl
    gem install base64
    ```
+## Universal 🌐 [Linux, MacOS, Windows]
+
+- Import with git :
+  ```sh
+  git clone https://github.com/mgxy0/FWCrypt.git
+  cd FWCrypt
+  ```
 
 ## Usage ⚙️
 
@@ -49,33 +65,6 @@ FWCrypt is a simple utility to encrypt and decrypt files using Ruby's OpenSSL li
    - Ruby
    - base64 lib
    - openssl lib
-
-### MacOS  :
-
-```sh
-brew install ruby
-brew install openssl
-gem install base64
-```
-
-### Linux 🐧 :
-
-```sh
-sudo apt-get update
-sudo apt-get install ruby-full
-sudo apt-get install libssl-dev
-gem install base64
-```
-
-### Windows 🪟 :
-
-1. Download and install Ruby using RubyInstaller from [rubyinstaller.org](https://rubyinstaller.org/).
-2. Ensure you select the option to add Ruby to the PATH during installation: select "Add Ruby executables to your PATH".
-3. After installation, open a new command prompt window and install the necessary gems:
-   ```sh
-   gem install openssl
-   gem install base64
-   ```
 
 ## License 📄
 
