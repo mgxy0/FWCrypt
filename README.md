@@ -48,18 +48,18 @@ gem install base64
    ```sh
    ruby main.rb
    ```
-   - Choose `c` to encrypt.
-   - Enter the path of the file to encrypt.
-   - Enter a strong password.
+   - Choose `c` to encrypt. 
+   - Enter the path of the file to encrypt. 
+   - Enter a strong password. 
    - The crypted files is in the same path.
 
 2. **Decrypt a file**:
    ```sh
    ruby main.rb
    ```
-   - Choose `d` to decrypt.
-   - Enter the path of the encrypted file with `.fwc` extension.
-   - Enter the password.
+   - Choose `d` to decrypt. 
+   - Enter the path of the encrypted file with `.fwc` extension. 
+   - Enter the password. 
    - The decrypted file is in the same path.
 
 ## Requirements 🗃️
