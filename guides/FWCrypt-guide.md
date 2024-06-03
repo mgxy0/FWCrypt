@@ -6,7 +6,7 @@ git clone https://github.com/mgxy0/FWCrypt.git
 cd FWCrypt
 ruby main.rb
 
-### Encrypt files 🔸
+### Encrypt files 🔸
 
 c :
 1. Enter the path of the file you want to encrypt.
