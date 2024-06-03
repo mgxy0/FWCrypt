@@ -1,3 +1,5 @@
+require 'openssl'
+
 def fibonacci(n)
   return n if n < 2
   a, b = 0, 1
@@ -9,13 +11,20 @@ def woodall(n)
   n * (2 ** n) - 1
 end
 
-def generate_key
-  key = []
-  (1..16).each do |i|
-    key << (fibonacci(i) & 0xFF)
-    key << (woodall(i) & 0xFF)
+def generate_complex_key
+  key_material = []
+  (1..32).each do |i|
+    fib = fibonacci(i) & 0xFF
+    wood = woodall(i) & 0xFF
+    combined = (fib ^ wood) % 256
+    key_material << combined
   end
-  key.pack("C*").ljust(32, "\0") # Ensure the key is 32 bytes
+  key_material.pack("C*")
+end
+
+def generate_key(salt)
+  complex_key = generate_complex_key
+  OpenSSL::PKCS5.pbkdf2_hmac(complex_key, salt, 20000, 32, 'sha256')
 end
 
 def generate_iv
@@ -23,6 +32,9 @@ def generate_iv
 end
 
 def read_file(path)
+  unless File.exist?(path)
+    raise "File not found: #{path}"
+  end
   File.binread(path)
 end
 
