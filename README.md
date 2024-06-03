@@ -35,8 +35,7 @@ gem install base64
    gem install openssl
    gem install base64
    ```
-## Universal 🌐 [Linux, MacOS, Windows]
-
+### Universal ⛓️ [Linux, MacOS, Windows]
 - Import with git :
   ```sh
   git clone https://github.com/mgxy0/FWCrypt.git
@@ -62,8 +61,8 @@ gem install base64
 
 ## Requirements 🗃️
 
-   - Ruby
-   - base64 lib
+   - Ruby 🔻
+   - base64 lib 
    - openssl lib
 
 ## License 📄
