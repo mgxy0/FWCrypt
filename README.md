@@ -23,6 +23,7 @@ gem install base64
 ```
 ### MacOS  :
 ```sh
+brew update
 brew install ruby
 brew install openssl
 gem install base64
