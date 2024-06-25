@@ -29,37 +29,43 @@ jobs:
           wget https://github.com/AppImage/pkg2appimage/releases/download/continuous/pkg2appimage-x86_64.AppImage
           chmod +x pkg2appimage-x86_64.AppImage
 
+      - name: Create AppDir structure
+        run: |
+          mkdir -p AppDir/usr/bin
+          mkdir -p AppDir/usr/share/icons/hicolor/256x256/apps
+          mkdir -p AppDir/usr/share/applications
+
       - name: Create FWCrypt.yml
         run: |
           cat <<EOF > FWCrypt.yml
-          app: FWCrypt
+app: FWCrypt
 
-          ingredients:
-            dist: focal
-            sources:
-              - deb http://archive.ubuntu.com/ubuntu/ focal main universe
-            packages:
-              - ruby
-          script:
-            - cp -r app/* AppDir/usr/bin/
-            - cp icon.png AppDir/usr/share/icons/hicolor/256x256/apps/FWCrypt.png
-            - mkdir -p AppDir/usr/share/applications
-            - cat <<EOL > AppDir/usr/share/applications/fwcrypt.desktop
-              [Desktop Entry]
-              Name=FWCrypt
-              Exec=AppRun
-              Icon=FWCrypt
-              Type=Application
-              Categories=Utility;
-              EOL
-            - cat <<EOL > AppDir/AppRun
-              #!/bin/bash
-              HERE="\$(dirname "\$(readlink -f "\${0}")")"
-              export PATH="\$HERE/usr/bin:\$PATH"
-              exec ruby "\$HERE/usr/bin/main.rb"
-              EOL
-            - chmod +x AppDir/AppRun
-          EOF
+ingredients:
+  dist: focal
+  sources:
+    - deb http://archive.ubuntu.com/ubuntu/ focal main universe
+  packages:
+    - ruby
+script:
+  - cp -r app/* AppDir/usr/bin/
+  - cp icon.png AppDir/usr/share/icons/hicolor/256x256/apps/FWCrypt.png
+  - mkdir -p AppDir/usr/share/applications
+  - cat <<EOL > AppDir/usr/share/applications/fwcrypt.desktop
+[Desktop Entry]
+Name=FWCrypt
+Exec=AppRun
+Icon=FWCrypt
+Type=Application
+Categories=Utility;
+EOL
+  - cat <<EOL > AppDir/AppRun
+#!/bin/bash
+HERE="\$(dirname "\$(readlink -f "\${0}")")"
+export PATH="\$HERE/usr/bin:\$PATH"
+exec ruby "\$HERE/usr/bin/main.rb"
+EOL
+  - chmod +x AppDir/AppRun
+EOF
 
       - name: Debug: List files
         run: ls -la
