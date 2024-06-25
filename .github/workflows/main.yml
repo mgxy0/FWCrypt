@@ -61,8 +61,20 @@ jobs:
             - chmod +x AppDir/AppRun
           EOF
 
+      - name: Debug: List files
+        run: ls -la
+
+      - name: Debug: List AppDir contents
+        run: ls -la AppDir
+
+      - name: Debug: Check YAML file
+        run: cat FWCrypt.yml
+
       - name: Build AppImage
         run: ./pkg2appimage-x86_64.AppImage FWCrypt.yml
+
+      - name: Debug: List out directory contents
+        run: ls -la out
 
       - name: Upload AppImage
         uses: actions/upload-artifact@v3
