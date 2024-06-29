@@ -48,6 +48,7 @@ gem install openssl
 ```sh
 git clone https://github.com/mgxy0/FWCrypt.git
 cd FWCrypt
+bundle install
 ruby main.rb
 ```
 
