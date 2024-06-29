@@ -22,8 +22,8 @@ sudo apt-get install libssl-dev
 gem install gtk3
 gem install base64
 gem install openssl
-
 ```
+
 ### MacOS  :
 ```sh
 brew update
@@ -32,8 +32,8 @@ brew install openssl
 gem install gtk3
 gem install base64
 gem install openssl
-
 ```
+
 ### Windows 🪟 :
 1. Download and install Ruby using RubyInstaller from [rubyinstaller.org](https://rubyinstaller.org/).
 2. Ensure you select the option to add Ruby to the PATH during installation: select "Add Ruby executables to your PATH".
@@ -42,12 +42,18 @@ gem install openssl
 gem install gtk3
 gem install base64
 gem install openssl
+```
 
+### Universal ⛓️
+```sh
+git clone https://github.com/mgxy0/FWCrypt.git
+cd FWCrypt
+ruby main.rb
 ```
 
 ## Usage ⚙️
 
-1. **Encrypt a file**:
+1. **Encrypt a file 🔸**:
    ```sh
    ruby main.rb
    ``` 
@@ -56,7 +62,7 @@ gem install openssl
    - The crypted files is named "CryptedFW-file.fwc" in the same path. 
    
      
-2. **Decrypt a file**:
+2. **Decrypt a file 🔹**:
    ```sh
    ruby main.rb
    ```
