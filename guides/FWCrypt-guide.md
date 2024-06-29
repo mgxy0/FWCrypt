@@ -1,26 +1,27 @@
+
 # 🔒 A little guide for FWCrypt 🔓
 
 ## Install 📦
-	
+    
+```sh
 git clone https://github.com/mgxy0/FWCrypt.git
 cd FWCrypt
 ruby main.rb
+```
 
-### Encrypt files 🔸
+## Encrypt files 🔸
 
-e :
 1. Enter the path of the file you want to encrypt.
-2. Enter the directory where you want to save the encrypted file.
-3. The program will generate an encryption key using the combination of Fibonacci and Woodall, and encrypt the file using AES-256-CBC.
-4. The encrypted file will be saved in the specified directory with the .fwc extension.
+2. Enter a password.
+3. Click the "Encrypt" button.
+4. The encrypted file will be saved in the same directory as the original file with the name `CryptedFW-file.fwc`.
 
-### Decrypt files 🔹
+## Decrypt files 🔹
 
-d:
 1. Enter the path of the encrypted file (must have .fwc extension).
-2. The program will generate the same key using the combination of Fibonacci and Woodall and will decipher the file.
-3. The deciphered file will be saved in the same directory as the encrypted file with the original name.
-
+2. Enter the password used for encryption.
+3. Click the "Decrypt" button.
+4. The decrypted file will be saved in the same directory as the encrypted file with the original name.
 
 ## Example of Use ✍🏻
 
@@ -33,45 +34,43 @@ ruby main.rb
 
 - Choose to encrypt 🔸:
 
-```sh
-Do you want to (e)ncrypt or (d)ecrypt to file?
-e
-```
+  1. Enter the path of the file to encrypt:
+  
+  ```sh
+  /path/to/your/file.txt
+  ```
 
-Enter the directory of the file to encrypt:
-```sh
-Enter the path of the file to encrypt:
-/path/to/your/file.txt
-```
+  2. Enter the password for encryption.
 
-Enter the Destination Directory for Cypher Files:
-```sh
-Enter the directory to save the encrypted file:
-/path/to/save/encrypted/file
-```
+  3. Click "Encrypt".
 
-Saved Cipher File:
-```sh
-Encrypted file saved at /path/to/save/encrypted/file/file.txt.fwc
-```
+  Saved Cipher File:
+  
+  ```sh
+  Encrypted file saved at /path/to/your/file.txt/CryptedFW-file.fwc
+  ```
 
 - Choose to Decrypt 🔹:
 
-```sh
-Do you want to (e)ncrypt or (d)ecrypt to file?
-d
-```
+  1. Enter the path of the encrypted file:
+  
+  ```sh
+  /path/to/your/file.txt/CryptedFW-file.fwc
+  ```
 
-Enter the path of the encrypted file:
-```sh
-Enter the path of the encrypted file (.fwc):
-/path/to/save/encrypted/file/file.txt.fwc
-```
+  2. Enter the password used for encryption.
+  
+  ```sh
+  your_password
+  ```
 
-Saved Decifrate File:
-```sh
-Decrypted file saved at /path/to/save/encrypted/file/file.txt
-```
+  3. Click "Decrypt".
+
+  Saved Deciphered File:
+  
+  ```sh
+  Decrypted file saved at /path/to/your/file.txt
+  ```
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
