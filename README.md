@@ -1,6 +1,6 @@
 # 🔒 FWCrypt - Ruby Encryption Tool 🔓
 
-![Screenshot 2024-06-29 alle 23 06 21](https://github.com/mgxy0/FWCrypt/assets/127632468/e1013fd1-621d-4043-b611-32d2319ee445)
+![Screenshot 2024-06-30 alle 21 16 01](https://github.com/mgxy0/FWCrypt/assets/127632468/2e239a38-b98c-44d4-bab2-aa2b98682292)
 
 FWCrypt is a simple utility to encrypt and decrypt files using Ruby's OpenSSL library.
 
