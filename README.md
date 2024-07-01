@@ -74,7 +74,7 @@ ruby main.rb
 ## Requirements 🗃️
 
    - Ruby 🔻
-   - Gtk3
+   - Gtk3 ❇️
    - base64 lib 
    - openssl lib
 
